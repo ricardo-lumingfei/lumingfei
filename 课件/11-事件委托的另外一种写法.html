@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<!-- 
+			第三种实现类似于事件委托的写法： 比较常见
+		 -->
+		<ul id="uu">
+			<li onclick="myClick(this)">标签1</li>
+			<li onclick="myClick(this)">标签2</li>
+			<li onclick="myClick(this)">标签3</li>
+			<li onclick="myClick(this)">标签4</li>
+		</ul>
+		<script src="./js/jquery-3.5.1.min.js"></script>
+		<script>
+			
+			
+			// var  datas = [
+			// 	{id:10,name:"拉拉1",price:99},
+			// 	{id:11,name:"拉拉2",price:99},
+			// 	{id:12,name:"拉拉3",price:99},
+			// 	{id:13,name:"拉拉4",price:99},
+			// ]
+			
+			// datas.forEach(function(item,index){
+			// 	$('#uu').append(`<li onclick="myClick(this)">${item.name}</li>`)
+			// })
+			
+			
+			/* 
+				this指向：
+					(1)在js的事件函数中，this指向的是事件源   ele.onclick = fucntion(){}
+					(2)在全局作用域下，this指向的是window对象
+					(3)在全局函数中，this指向的也是window对象
+			 */
+			
+			// 设置函数
+			function myClick(_this){
+				// console.log(123)
+				// 需求： 获取事件源
+				console.log(_this);
+				// console.log(this);
+			}
+			
+			
+			console.log(this);
+			
+			
+			// 2秒之后，在ul的最后面追加一个li标签，内容自定
+			setTimeout(function(){
+				// $('ul').append("<li onclick='myClick(this)'>23456789</li>")
+				$('ul').append("<li onclick='myClick(this)'>23456789</li>")
+			},2000)
+			
+		</script>
+	</body>
+</html>

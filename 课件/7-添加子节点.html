@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>我本来就存在</li>
+    </ul>
+    <input type="text">
+    <button>往前添加</button>
+    <button>往后添加</button>
+    
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script>
+		// 1.在某个元素的子级中，往后面添加节点
+		// $(element).append('子节点')
+		// 2.在某个元素的子级中，往前面添加节点
+		// $(element).prepend('子节点')
+		
+		// 1. 使用append向后追加节点
+		$('button').eq(1).click(function(){
+			// 获取input文本内容
+			 var val =  $('input').val().trim(); // 获取值并且去除两边的空格
+			 
+			 $('ul').append("<li>"+val+"</li>")
+			 
+			 $('input').val("")
+		})
+	
+		// 2.使用prepend 向前追加节点
+		$('button').eq(0).click(function(){
+			// 获取input文本内容
+			 var val =  $('input').val().trim(); // 获取值并且去除两边的空格
+			 
+			 $('ul').prepend("<li>"+val+"</li>")
+			 
+			 $('input').val("")
+		})
+    </script>
+</body>
+
+</html>

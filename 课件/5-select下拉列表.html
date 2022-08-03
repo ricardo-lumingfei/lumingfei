@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- <form action=""> -->
+			<!-- <input type="text"> -->
+			<select name="zhiwei" id="" multiple>
+				<option value="0">--请选择--</option>
+				<option value="1">web开发工程师</option>
+				<option value="2">php开发工程师</option>
+				<option value="3">python开发工程师</option>
+				<option value="4">java开发工程师</option>
+			</select>
+		<!-- </form> -->
+		
+		<script src="js/jquery-3.5.1.min.js"></script>
+		<script>
+			// change 当内容发生改变的时候，进行触发
+			$('select').change(function(){
+				console.log($(this).val());
+			})
+			
+			
+			// 总结1：  常见的表单元素，包括  input文本，单选，多选 ，文本域、下拉列表等 ，获取值使用的val()
+			// 总结2： 单选，多选 下拉列表等元素，常见的使用的事件是change事件
+		</script>
+	</body>
+</html>

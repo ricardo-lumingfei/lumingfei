@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微博发布</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            list-style: none;
+        }
+
+        body {
+            background: #efefef;
+        }
+
+        section {
+            overflow: hidden;
+            width: 800px;
+            padding: 10px;
+            background: #fff;
+            margin: 100px auto 20px;
+        }
+
+        h4 {
+            color: #426c81;
+            font-weight: normal;
+        }
+
+        textarea {
+            width: 100%;
+            resize: none;
+            border: 1px solid #ccc;
+            outline: none;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            height: 70px;
+        }
+
+        div {
+            width: 90px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: #ff8140;
+            color: #fff;
+            border-radius: 6px;
+            float: right;
+            opacity: 0.8;
+            cursor: not-allowed;
+        }
+
+        ul {
+            width: 800px;
+            padding: 10px;
+            background: #fff;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        li {
+            border-bottom: 1px dashed #ccc;
+            line-height: 30px;
+            height: 30px;
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        p {
+            width: 95%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        span {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            background: #ccc;
+            border-radius: 3px;
+        }
+
+        textarea.active {
+            border-color: #ff8140;
+        }
+
+        div.active {
+            opacity: 1;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h4>有什么新鲜事想告诉大家?</h4>
+        <textarea></textarea>
+        <div>发布</div>
+    </section>
+    <ul>
+        <!-- <li>
+            <p></p>
+            <span>x</span>
+        </li> -->
+    </ul>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        // 2.3 使用开关思想决定按钮是不是真的可点击
+        // 将业务逻辑(点击按钮的业务逻辑)和样式显示分离
+        var flag = false;
+        btnAble();
+        // 1. 聚焦失焦
+        $("textarea").focus(function () {
+            // 改变样式思路: 类名操作样式
+            $(this).addClass("active");
+        })
+
+        $("textarea").blur(function () {
+            $(this).removeClass("active");
+        })
+
+        // 2. 按钮的样式
+        // 2.1 键盘事件
+        $("textarea").keyup(function (e) {// 输入完成之后再做逻辑
+            btnAble();
+
+            if (e.keyCode == 13) {
+                // 3. 发布功能
+                /* // 3.1 节点操作和非空校验
+                var txt = $("textarea").val().trim();
+                if (txt) {
+                    $("ul").prepend(`
+                        <li>
+                            <p>${txt}</p>
+                            <span>x</span>
+                        </li>
+                    `).children().eq(0).hide().slideDown(100);
+                } else {
+                    alert("亲亲，输入框不能为空!")
+                }
+                // 3.2 初始化操作
+                $("textarea").val("");
+                // 3.3 再次判断按钮是否可点击
+                btnAble(); */
+                submitFn();
+            }
+        })
+
+        // 3.4 按钮发布
+        $("div").click(function () {
+            if (flag) {
+                // 发布
+                submitFn();
+            }
+            // else不需要写内容  按钮不可点击不需要做任何操作
+        })
+
+
+        // 4. 删除功能
+        // 4.1 事件委托
+        $("ul").on("click", "span", function () {
+            // 4.2删除 li 
+            // $(this).parent().remove();
+            // 4.3 动画函数
+            // 先向做左移动   再向上滑动隐藏   最后删除
+            $(this).parent().animate({ marginLeft: "-1000px" }, 300).slideUp(500, function () {
+                $(this).remove()
+            });
+        })
+
+        // 3.5 发布功能的函数封装
+        function submitFn() {
+            // 3.1 节点操作和非空校验
+            var txt = $("textarea").val().trim();
+            if (txt) {
+                $("ul").prepend(`
+                        <li>
+                            <p>${txt}</p>
+                            <span>x</span>
+                        </li>
+                    `).children().eq(0).hide().slideDown(500);
+            } else {
+                alert("亲亲，输入框不能为空!")
+            }
+            // 3.2 初始化操作
+            $("textarea").val("");
+            // 3.3 再次判断按钮是否可点击
+            btnAble();
+        }
+        // 2.4 按钮可点击函数封装
+        function btnAble() {
+            var txt = $("textarea").val().trim();
+            if (txt) {
+                // 2.2 按钮状态修改
+                // 看起来可点击
+                $("div").addClass("active");
+                // 2.3 真可点击
+                flag = true;
+            } else {
+                // 看起来不可点击
+                $("div").removeClass("active");
+                // 2.3 真可点击
+                flag = false;
+            }
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

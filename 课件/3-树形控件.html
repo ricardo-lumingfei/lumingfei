@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度风云榜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            list-style: none;
+        }
+
+        ul {
+            padding: 10px;
+            margin: 100px auto;
+            border: 1px solid #000;
+            width: 100px;
+        }
+
+        ul>li {
+            cursor: pointer;
+        }
+
+        span {
+            background: url(images/close.gif) no-repeat left center;
+            padding-left: 20px;
+        }
+
+        span.open {
+            background-image: url(images/open.gif);
+        }
+
+        ol {
+            display: none;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <span>音乐</span>
+            <ol>
+                <li>你好毒</li>
+                <li>该死的温柔</li>
+                <li>演员</li>
+            </ol>
+        </li>
+        <li>
+            <span>电影</span>
+            <ol>
+                <li>釜山行</li>
+                <li>战狼</li>
+                <li>杀破狼</li>
+            </ol>
+        </li>
+        <li>
+            <span>小说</span>
+            <ol>
+                <li>天龙八部</li>
+                <li>三生三世</li>
+                <li>小时代</li>
+            </ol>
+        </li>
+    </ul>
+	
+	<script src="js/jquery-3.5.1.min.js"></script>
+	<script>
+		// 切换某个元素的类名（添加或删除）
+		// $(selector).toggleClass(“className”)
+		// 1.给span添加点击事件
+		// $('span').click(function(){
+		// 	// $(this)
+		// 	$(this).toggleClass("open").siblings("ol").slideToggle(500)     //toggle(1000);
+			
+		// 	$(this).parent("li").siblings("li").children("span").removeClass("open").siblings('ol').slideUp(500)
+		// })
+		
+		$('span').click(function(){
+			$(this)                 // 当期点击的span标签
+			.toggleClass("open")  //  把标签添加或移除open类名
+			.siblings("ol")   //  找到span的兄弟ol，  ===》 目标元素（ol）
+			.slideToggle(500) //  给span的亲兄弟ol添加或者移除 下拉或者收起 动画效果
+			.parent("li") //  找到点击的span和ol的父级   （li） ==》 目标元素（li）
+			.siblings("li") // 找到点击的span的 叔叔或者伯伯 （其他的li标签）==》 目标元素（其他的li）
+			.children("span") // 找到其他的li的span标签  ==》目标元素（其他的span）
+			.removeClass("open") //  把其他的span的类名移除了
+			.siblings('ol')  //  找到其他的span的兄弟ol  ===》 ol
+			.slideUp(500) //  让其他ol收起
+		})
+		
+	</script>
+</body>
+</html>

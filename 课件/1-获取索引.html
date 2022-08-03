@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button>1</button>
+		<button>2</button>
+		<button>3</button>
+		<button>4</button>
+		<button>5</button>
+		
+		<script src="js/jquery-3.5.1.min.js"></script>
+		<script>
+			// 引入入口函数
+			$(function(){
+				//需求：  当点击某一个按钮的时候，获取其对应的索引
+				 
+				 //1.原生js的写法
+				 var  btns = document.getElementsByTagName("button");
+				 for(var i=0;i<btns.length;i++){
+					 
+					 btns[i].myindex = i;  // btns[0].myindex = 0;    btns[1].myindex = 1;
+					 btns[i].onclick = function(){
+						// 谁是索引 
+						console.log(this.myindex);
+						
+					 }
+				 }
+				 
+				 
+				 // 2.jq的获取索引  index()
+				 $('button').click(function(){
+					 // console.log(this);
+					 // this.index() //  错误的写法，不能使用原生js的对象操作jquery的方法
+					 console.log($(this).index());
+				 })
+				
+				
+				
+			})
+		</script>
+	</body>
+</html>

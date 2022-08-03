@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" placeholder="请输入关键字">
+		<button>搜索</button>
+		
+		<textarea id="_text" name="aa" cols="30" rows="10"></textarea>
+		<button>获取textArea的值</button>
+		
+		<!-- prop 获取选中状态的 -->
+		<input type="radio" value="1" name="sex">男
+		<input type="radio" value="2" name="sex">女  
+		
+		
+		
+		
+		<script src="js/jquery-3.5.1.min.js"></script>
+		<script>
+			// 1.使用原生js  .value
+			// document.getElementsByTagName("button")[0].onclick = function(){
+			// 	// var  val = document.getElementsByTagName("input")[0].value; //获取值
+			// 	// console.log(val);
+			// 	document.getElementsByTagName("input")[0].value = "肖战";
+				
+			// }
+			
+			// 2.jQuery
+			$('button:first').click(function(){
+				// 2.1获取
+				var val = $('input:eq(0)').val();
+				// console.log(val);
+				
+				// 2.2设置
+				$('input:eq(0)').val("张艺兴")
+			})
+			
+			$('button:eq(1)').click(function(){
+				console.log($('#_text').val());
+			})
+			
+			
+			$('input[name=sex]').click(function(){
+				console.log($(this).val());
+			})
+			
+			
+		</script>
+	</body>
+</html>

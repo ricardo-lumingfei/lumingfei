@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" placeholder="输入内容">
+		<button id="login">登录</button>
+		<script src="js/jquery-3.5.1.min.js"></script>
+		<script>
+			$('#login').click(function(){
+				var val = $('input').val();
+				// $.trim()  jquery的使用
+				// val = $.trim(val);
+				// str.trim()  原生js的使用
+				val =val.trim();
+				
+				// 判断val是否为空
+				if(val == ""){
+					alert('内容不能为空');
+					return;
+				}
+				
+				console.log(val);
+				
+				
+				$('input').val(val)
+				
+			})
+			
+		</script>
+	</body>
+</html>

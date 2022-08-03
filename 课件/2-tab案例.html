@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tab栏</title>
+    <style type="text/css">
+        div,
+        span,
+        ul,
+        li,
+        h2,
+        body {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .all {
+            width: 440px;
+            border: 1px solid #000;
+            padding: 10px;
+            margin: 80px auto;
+        }
+
+        .all h2 {
+            height: 30px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .all h2 span {
+            width: 100px;
+            height: 30px;
+            background: #CCC;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .all h2 span.current {
+            background: #FF3366;
+        }
+
+        .all ul li {
+            display: none;
+            background: #003066;
+            height: 200px;
+        }
+
+        .all ul li:nth-of-type(2) {
+
+            background: #cfc;
+        }
+
+        .all ul li:nth-of-type(3) {
+
+            background: pink;
+        }
+
+        .all ul li:nth-of-type(4) {
+
+            background: red;
+        }
+
+        .all ul li.current {
+            display: block
+        }
+    </style>
+</head>
+
+<body>
+    <div class="all">
+        <h2>
+            <span class="current">新闻</span>
+            <span>娱乐</span>
+            <span>游戏</span>
+            <span>财经</span>
+        </h2>
+       <ul>
+            <li class="current">新闻</li>
+            <li>娱乐</li>
+            <li>游戏</li>
+            <li>财经</li>
+        </ul>
+    </div>
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script>
+		// 给某个元素添加类名，理论上，一个标签可以添加无数多个类名，用空格分开
+		// $(selector).addClass(“className1  className2  className3”)
+		
+		// 给某个元素移除类名
+		// $(selector).removeClass(“className1  className2  className3”)
+        $(function(){
+			// 需求：  点击span，添加current类名，  其他的span移除current
+			$('span').click(function(){
+				$(this).addClass('current').siblings('span').removeClass("current")
+				$(this).parent().siblings("ul").children("li").eq($(this).index()).addClass('current').siblings("li").removeClass("current")
+				// $('li').eq($(this).index())
+			})
+		})
+    </script>
+</body>
+
+</html>
